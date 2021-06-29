@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && node ./build/main.ts",
+    "start": "npm run build && node ./build/main.js",
     "lint": "eslint . --ext .ts",
     "format": "prettier --config .prettierrc.json 'src/**/*.{js,ts}' --write"
   },
