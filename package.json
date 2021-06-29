@@ -2,27 +2,21 @@
   "name": "ts-exercises",
   "version": "1.0.0",
   "description": "ts-exercises it's a collection of various exercises about ts and it fundamentals",
-  "main": "index.js",
+  "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && node ./build/index.js",
+    "start": "npm run build && node ./build/main.ts",
     "lint": "eslint . --ext .ts",
     "format": "prettier --config .prettierrc.json 'src/**/*.{js,ts}' --write"
   },
-  "keywords": [
-    "tsc",
-    "tslint",
-    "node",
-    "prettier",
-    "setup",
-    "template"
-  ],
+  "keywords": ["tsc", "tslint", "node", "prettier", "setup", "template"],
   "author": "Sergio Bernal",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^15.12.5",
+    "@types/yargs": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
     "eslint": "^7.29.0",
