@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/nhulox97/ts-run-length">
+  <a href="https://gitlab.com/nhulox97/ts-run-length">
     <img src="static/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -78,7 +78,7 @@ next:
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/nhulox97/ts-base-setup.git
+   git clone https://gitlab.com/nhulox97/ts-run-length.git
    ```
 2. Install NPM packages
    ```sh
@@ -126,4 +126,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Sergio Bernal - [@nhulo97](https://twitter.com/nhulox97) - sergiobernal909@gmail.com
 
-Project Link: [https://github.com/nhulox97/ts-base-setup](https://github.com/nhulox97/ts-base-setup)
+Project Link: [https://github.com/nhulox97/ts-base-setup](https://gitlab.com/nhulox97/ts-run-length)
