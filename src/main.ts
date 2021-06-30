@@ -5,11 +5,12 @@ const args = yargs(process.argv.slice(2))
   .scriptName('run-length')
   .usage('$0 [input-file] ...[options]')
   .options({
+    // Here I define every option as a property to parse into args object
     e: { type: 'string', alias: 'encode', desc: 'Encode the given file' },
     d: {
-      type: 'array',
+      type: 'string',
       alias: 'decode',
-      desc: "Decode the given file, if it's correctly encoded",
+      desc: 'Decode the given file, if it is correctly encoded',
     },
     h: { type: 'boolean', alias: 'help' },
     v: { type: 'boolean', alias: 'version' },
