@@ -100,7 +100,26 @@ This project have a list of differents commands that you can execute, I'll descr
 - `npm run lint -> Executes the linter (ESlint) in all project files. `
 - `npm run format -> Executes the formatter (prettier) in all project files, also it overwrite the files which were formatted.`
 
-[comment]: <> (TODO: Add script usage and examples)
+[comment]: <> (DONE: Add script usage and examples)
+
+### script arguments and options
+
+```sh
+ ts-node src/main.ts -h
+run-length [input-file] ...[options]
+
+Options:
+  -e, --encode   Encode the given file                                  [string]
+  -d, --decode   Decode the given file, if it is correctly encoded      [string]
+  -h, --help     Show help                                             [boolean]
+  -v, --version  Show version number                                   [boolean]
+
+Examples:
+  run-length [input-file] -e  Encode the file if it format is supported
+  run-length [input-file] -d  Decode the file if it format is supported
+
+@nhulox97 node-trainee-program 2021
+```
 
 <!-- CONTRIBUTING -->
 
