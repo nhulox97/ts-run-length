@@ -2,6 +2,7 @@ import { readFile, writeFile } from 'fs';
 
 interface IFSRunLen {
   readFileData(): Promise<string>;
+  // eslint-disable-next-line no-unused-vars
   writeFileData(data: string): Promise<boolean>;
 }
 
@@ -14,13 +15,13 @@ export class FSRunLen implements IFSRunLen {
 
   writeFileData = (data: string): Promise<boolean> => {
     return new Promise((resolve, reject) => {
-      resolve(true);
+      writeFile(this.path, data, (err) => (!err ? resolve(true) : reject(err)));
     });
   };
 
   readFileData = (): Promise<string> => {
     return new Promise((resolve, reject) => {
-      resolve('data');
+      readFile(this.path, 'utf-8', (err, data) => (!err ? resolve(data) : reject(err)));
     });
   };
 }
