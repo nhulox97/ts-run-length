@@ -53,4 +53,5 @@ const inputFilePath: string = args._[0] as string;
 
 // instantiate RunLen class and send inputFilePath
 const rl = new RunLen(inputFilePath);
-rl.decode();
+rl.setData('data');
+rl.encode();
