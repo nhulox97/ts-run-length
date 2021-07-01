@@ -55,6 +55,11 @@ const args: Arguments = yargs(process.argv.slice(2))
   .epilogue('@nhulox97 node-trainee-program 2021')
   .parseSync();
 
+/* If everything goes ok with `.check()` validations, then the control is passed to
+ * the next inline-funtion-call, there's where I'm going to make extra validations which are not
+ * possible into yargs definition
+ */
+
 (async () => {
   const inputFilePath: string = args._[0] as string;
 
