@@ -13,8 +13,9 @@ import { isValidFilePath } from './run-length-utils';
 
 interface Arguments {
   [x: string]: unknown;
-  e?: boolean;
   d?: boolean;
+  e?: boolean;
+  o?: boolean;
   h?: boolean;
   v?: boolean;
   _: (string | number)[];
@@ -33,6 +34,11 @@ const args: Arguments = yargs(process.argv.slice(2))
       desc: 'Decode the given file',
       conflicts: 'e',
     },
+    o: {
+      type: 'boolean',
+      alias: 'override',
+      desc: 'Override the input file whatever be result would get',
+    },
     h: { type: 'boolean', alias: 'help' },
     v: { type: 'boolean', alias: 'version' },
   })
@@ -49,9 +55,15 @@ const args: Arguments = yargs(process.argv.slice(2))
   .epilogue('@nhulox97 node-trainee-program 2021')
   .parseSync();
 
-const inputFilePath: string = args._[0] as string;
+(async () => {
+  const inputFilePath: string = args._[0] as string;
 
-// instantiate RunLen class and send inputFilePath
-const rl = new RunLen(inputFilePath);
-rl.setData('data');
-rl.encode();
+  try {
+    // instantiate RunLen class and send inputFilePath
+    const rl = new RunLen(inputFilePath);
+    await rl.fecthFileData();
+    console.log(rl.data);
+  } catch (e: unknown) {
+    throw new Error(e as string);
+  }
+})();
