@@ -6,6 +6,10 @@ interface IFSRunLen {
   writeFileData(data: string): Promise<boolean>;
 }
 
+/**
+ * RunLenFS provides methos to deal with I/O tasks
+ * @implements IFSRunLen {@link IFSRunLen}
+ */
 export class FSRunLen implements IFSRunLen {
   protected path: string;
 
