@@ -24,6 +24,6 @@ export class FSRunLen {
    * @returns data  From the input-file.
    */
   protected readFileData(): string {
-    return readFileSync(this.path, 'utf-8');
+    return readFileSync(this.path, 'utf-8').trim();
   }
 }

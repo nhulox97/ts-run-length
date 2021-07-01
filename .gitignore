@@ -70,3 +70,5 @@ web_modules/
 
 # build dir
 build/
+
+random/

@@ -1,4 +1,5 @@
 import { FSRunLen } from './run-lenght-fs';
+import { hasCodableFormat, hasDecodableFormat } from './run-length-utils';
 
 /**
  * RunLen is an algorithm that enables you to encode an decode text by a patter defined on itself.
@@ -33,11 +34,11 @@ export class RunLen extends FSRunLen {
   }
 
   decode(): void {
-    this.showData();
+    console.log(hasDecodableFormat(this.data));
   }
 
   encode(): void {
-    this.showData();
+    console.log(hasCodableFormat(this.data));
   }
 
   showData(): void {
