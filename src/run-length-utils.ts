@@ -17,7 +17,8 @@ const encExp = RegExp(/\w/);
  * @see resolve {@link resolve}
  * @see existsSync {@link existsSync}
  */
-export const isValidFilePath = (filepath: string): boolean => existsSync(resolve(filepath));
+export const isValidFilePath = (filepath: unknown): boolean =>
+  existsSync(resolve(filepath as string));
 
 /**
  * Check if the given file data has the right format to decode.

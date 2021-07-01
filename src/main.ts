@@ -44,7 +44,7 @@ const args: Arguments = yargs(process.argv.slice(2))
   })
   .check((argv) => {
     if (!argv._[0]) throw 'Please provide a input file';
-    if (!isValidFilePath(argv._[0] as string)) throw 'Please provide a valid file path';
+    if (!isValidFilePath(argv._[0])) throw 'Please provide a valid file path';
     if (!argv.e && !argv.d) throw 'You need to provide at least option -e or -d';
     return true;
   })
@@ -59,16 +59,13 @@ const args: Arguments = yargs(process.argv.slice(2))
  * the next inline-funtion-call, there's where I'm going to make extra validations which are not
  * possible into yargs definition
  */
+const inputFilePath = args._[0] as string;
 
-(async () => {
-  const inputFilePath: string = args._[0] as string;
-
-  try {
-    // instantiate RunLen class and send inputFilePath
-    const rl = new RunLen(inputFilePath);
-    await rl.fecthFileData();
-    console.log(rl.data);
-  } catch (e: unknown) {
-    throw new Error(e as string);
-  }
-})();
+try {
+  // instantiate RunLen class and send inputFilePath which gonna read and set the current data from
+  // input file
+  const rl = new RunLen(inputFilePath);
+  rl.encode();
+} catch (e) {
+  throw new Error(e);
+}
