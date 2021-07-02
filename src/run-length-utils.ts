@@ -29,6 +29,6 @@ export const hasCodableFormat = (data: string): boolean => !nonMatchEncExp.test(
  */
 export const hasDecodableFormat = (data: string): boolean => !nonMatchDecExp.test(data);
 
-export const splitDataByLineBreak = (data: string): string[] => data.split(/\r?\n/);
+export const splitDataByLineBreak = (data: string): string[] => data.split(/\r?\n/) ?? [data];
 
 export const joinDataByLineBreak = (data: string[]): string => data.join('\r\n');
