@@ -17,10 +17,12 @@ import {
  */
 export class RunLen extends FSRunLen {
   private data: string;
+  private dataArray: string[];
 
   constructor(path: string) {
     super(path);
     this.data = this.fecthFileData();
+    this.dataArray = splitDataByLineBreak(this.data);
   }
 
   /**
@@ -42,18 +44,29 @@ export class RunLen extends FSRunLen {
     // if input file has not the right format, then throw it
     if (!hasDecodableFormat(this.data)) throw 'The content has not the supported format';
 
-    console.log('Encode');
+    const dataLines = this.dataArray.map((dataLine) => {
+      return dataLine
+        .split('')
+        .reduce(
+          (acc, currChar, idxChar, chars) =>
+            idxChar % 2 === 0
+              ? acc + chars[idxChar + 1].repeat(currChar as unknown as number)
+              : acc,
+          ''
+        );
+    });
+    this.setData(joinDataByLineBreak(dataLines));
+    this.showData();
   }
 
   encode(): void {
     // if input file has not the right format, then throw it
     if (!hasCodableFormat(this.data)) throw 'The content has not the supported format';
 
-    let dataLines = splitDataByLineBreak(this.data);
     let lineIdx = 0;
     let charCount;
-    let encodedLine = '';
-    dataLines = dataLines.map((dataLine) => {
+    let encodedLine;
+    const dataLines = this.dataArray.map((dataLine) => {
       charCount = 1;
       encodedLine = '';
       for (lineIdx = 1; lineIdx <= dataLine.length; lineIdx += 1) {
