@@ -55,7 +55,8 @@ const args: Arguments = yargs(process.argv.slice(2))
   .epilogue('@nhulox97 node-trainee-program 2021')
   .parseSync();
 
-/* If everything goes ok with `.check()` validations, then the control is passed to
+/**
+ * If everything goes ok with `.check()` validations, then the control is passed to
  * the next inline-funtion-call, there's where I'm going to make extra validations which are not
  * possible into yargs definition
  */
@@ -65,7 +66,9 @@ try {
   // instantiate RunLen class and send inputFilePath which gonna read and set the current data from
   // input file
   const rl = new RunLen(inputFilePath);
-  rl.encode();
+  // rl.encode();
+  // rl.showData();
+  // rl.decode();
 } catch (e) {
   throw new Error(e);
 }
