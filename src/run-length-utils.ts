@@ -2,10 +2,9 @@ import { existsSync } from 'fs';
 import { resolve } from 'path';
 
 // Expression to check if into input-file are some number, space or symbol
-const encExp = RegExp(/([0-9]|\s|[^a-zA-Z\d])/);
-
+const nonMatchEncExp = RegExp("[\\[\\]$&+,:;=¿¡?@#|'<>.^*()%!-]|\\ |\\d");
 // Expression to check if input-file has some non decodable pattern
-const decExp = RegExp(/([a-zA-Z][a-zA-Z]|\W|[^\dA-Z])/);
+const nonMatchDecExp = RegExp("[a-zA-Z][a-zA-Z]|^[A-Za-z]|[\\[\\]$&+,:;=¿¡?@#|'<>.^*()%!-]|\\ ");
 
 /**
  * Check if a file exists, by using resolve and existsSync methods, from path and fs modules
@@ -19,22 +18,13 @@ export const isValidFilePath = (filepath: unknown): boolean =>
   existsSync(resolve(filepath as string));
 
 /**
- * Check if the given file data has the right format to decode.
- * @param data  Text result from read the input file.
- */
-export const hasCodableFormat = (data: string): boolean => {
-  return !testRegExpFromArray(data.split(/\r?\n/), encExp);
-};
-
-/**
  * Check if the given file data has the right format to encode.
  * @param data  Text result from read the input file.
  */
-export const hasDecodableFormat = (data: string): boolean => {
-  return !testRegExpFromArray(data.split(/\r?\n/), decExp);
-};
+export const hasCodableFormat = (data: string): boolean => !nonMatchEncExp.test(data);
 
-const testRegExpFromArray = (lines: string[], exp: RegExp): boolean => {
-  const match = lines.reduce((acc, line) => (exp.test(line) && acc === '' ? line : acc), '');
-  return match !== '';
-};
+/**
+ * Check if the given file data has the right format to decode.
+ * @param data  Text result from read the input file.
+ */
+export const hasDecodableFormat = (data: string): boolean => !nonMatchDecExp.test(data);
