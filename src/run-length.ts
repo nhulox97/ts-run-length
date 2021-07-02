@@ -17,10 +17,12 @@ import {
  */
 export class RunLen extends FSRunLen {
   private data: string;
+  private dataArray: string[];
 
   constructor(path: string) {
     super(path);
     this.data = this.fecthFileData();
+    this.dataArray = splitDataByLineBreak(this.data);
   }
 
   /**
@@ -49,7 +51,7 @@ export class RunLen extends FSRunLen {
     // if input file has not the right format, then throw it
     if (!hasCodableFormat(this.data)) throw 'The content has not the supported format';
 
-    let dataLines = splitDataByLineBreak(this.data);
+    let dataLines = this.dataArray;
     let lineIdx = 0;
     let charCount;
     let encodedLine = '';
