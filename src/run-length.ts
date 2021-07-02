@@ -49,12 +49,11 @@ export class RunLen extends FSRunLen {
     // if input file has not the right format, then throw it
     if (!hasCodableFormat(this.data)) throw 'The content has not the supported format';
 
-    const dataLines = splitDataByLineBreak(this.data);
+    let dataLines = splitDataByLineBreak(this.data);
     let lineIdx = 0;
     let charCount;
     let encodedLine = '';
-    const encodedLines: string[] = [];
-    dataLines.forEach((dataLine) => {
+    dataLines = dataLines.map((dataLine) => {
       charCount = 1;
       encodedLine = '';
       for (lineIdx = 1; lineIdx <= dataLine.length; lineIdx += 1) {
@@ -65,9 +64,9 @@ export class RunLen extends FSRunLen {
           charCount = 1;
         }
       }
-      encodedLines.push(encodedLine);
+      return encodedLine;
     });
-    this.setData(joinDataByLineBreak(encodedLines));
+    this.setData(joinDataByLineBreak(dataLines));
     this.showData();
   }
 
