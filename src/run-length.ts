@@ -42,16 +42,18 @@ export class RunLen extends FSRunLen {
 
   decode(): void {
     // if input file has not the right format, then throw it
-    if (!hasDecodableFormat(this.data)) throw 'The content has not the supported format';
+    if (!hasDecodableFormat(this.data))
+      throw `
+        The content has not the supported format to decode.
+        See: https://en.wikipedia.org/wiki/Run-length_encoding for more information
+      `;
 
     const dataLines = this.dataArray.map((dataLine) => {
       return dataLine
         .split('')
         .reduce(
           (acc, currChar, idxChar, chars) =>
-            idxChar % 2 === 0
-              ? acc + chars[idxChar + 1].repeat(currChar as unknown as number)
-              : acc,
+            idxChar % 2 === 0 ? acc + chars[idxChar + 1].repeat(parseInt(currChar)) : acc,
           ''
         );
     });
@@ -62,7 +64,11 @@ export class RunLen extends FSRunLen {
 
   encode(): void {
     // if input file has not the right format, then throw it
-    if (!hasCodableFormat(this.data)) throw 'The content has not the supported format';
+    if (!hasCodableFormat(this.data))
+      throw `
+          The content has not the supported format to encode.
+          See: https://en.wikipedia.org/wiki/Run-length_encoding for more information
+      `;
 
     let lineIdx = 0;
     let charCount;
