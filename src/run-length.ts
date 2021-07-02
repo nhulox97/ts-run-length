@@ -1,5 +1,10 @@
 import { FSRunLen } from './run-lenght-fs';
-import { hasCodableFormat, hasDecodableFormat } from './run-length-utils';
+import {
+  hasCodableFormat,
+  hasDecodableFormat,
+  joinDataByLineBreak,
+  splitDataByLineBreak,
+} from './run-length-utils';
 
 /**
  * RunLen is an algorithm that enables you to encode an decode text by a patter defined on itself.
@@ -34,11 +39,36 @@ export class RunLen extends FSRunLen {
   }
 
   decode(): void {
-    console.log(hasDecodableFormat(this.data));
+    // if input file has not the right format, then throw it
+    if (!hasDecodableFormat(this.data)) throw 'The content has not the supported format';
+
+    console.log('Encode');
   }
 
   encode(): void {
-    console.log(hasCodableFormat(this.data));
+    // if input file has not the right format, then throw it
+    if (!hasCodableFormat(this.data)) throw 'The content has not the supported format';
+
+    const dataLines = splitDataByLineBreak(this.data);
+    let lineIdx = 0;
+    let charCount;
+    let encodedLine = '';
+    const encodedLines: string[] = [];
+    dataLines.forEach((dataLine) => {
+      charCount = 1;
+      encodedLine = '';
+      for (lineIdx = 1; lineIdx <= dataLine.length; lineIdx += 1) {
+        if (dataLine[lineIdx] === dataLine[lineIdx - 1]) {
+          charCount += 1;
+        } else {
+          encodedLine += `${charCount}${dataLine[lineIdx - 1]}`;
+          charCount = 1;
+        }
+      }
+      encodedLines.push(encodedLine);
+    });
+    this.setData(joinDataByLineBreak(encodedLines));
+    this.showData();
   }
 
   showData(): void {
