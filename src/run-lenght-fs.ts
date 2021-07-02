@@ -1,7 +1,8 @@
 import { readFileSync, writeFileSync } from 'fs';
 
 /**
- * RunLenFS provides methos to deal with I/O tasks.
+ * RunLenFS provides methos to deal with I/O tasks. A valid filepath must be given
+ * to be able to use the class methods.
  */
 export class FSRunLen {
   protected path: string;

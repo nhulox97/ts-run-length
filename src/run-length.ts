@@ -40,6 +40,11 @@ export class RunLen extends FSRunLen {
     this.data = d;
   }
 
+  /**
+   * As the first step, the format of the data from input file is validated;
+   * if everything goes well then the respective decoding is applied to the data.
+   * The result will be stored on [[`RunLen.data`]] and the input file will be overwritten.
+   */
   decode(): void {
     // if input file has not the right format, then throw it
     if (!hasDecodableFormat(this.data))
@@ -62,6 +67,11 @@ export class RunLen extends FSRunLen {
     this.showData();
   }
 
+  /**
+   * As the first step, the format of the data from input file is validated;
+   * if data has encodable format, then will be encoded. The result will be
+   * stored on [[`RunLen.data`]] and the input file will be overwritten.
+   */
   encode(): void {
     // if input file has not the right format, then throw it
     if (!hasCodableFormat(this.data))
@@ -91,7 +101,10 @@ export class RunLen extends FSRunLen {
     this.showData();
   }
 
-  showData(): void {
+  /**
+   * Prints current state stored on [[`RunLen.data`]]
+   */
+  private showData(): void {
     console.log(this.data);
   }
 }
