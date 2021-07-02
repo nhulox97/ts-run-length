@@ -102,7 +102,7 @@ This project have a list of differents commands that you can execute, I'll descr
 
 [comment]: <> (DONE: Add script usage and examples)
 
-### script arguments and options
+### main script (arguments and options)
 
 ```sh
  ts-node src/main.ts -h
@@ -119,13 +119,40 @@ Examples:
   run-length [input-file] -d  Decode the file if it format is supported
 
 @nhulox97 node-trainee-program 2021
+-------------------------------------------------------------------------------
+[-e | -d] 'At least on of both flags must be included'
+```
+
+### main script examples
+
+You will be able to execute the main script in three differents ways:
+
+1. By executing the build script which gonna compile the entire `/src` folder into `/build` folder.
+   Then you will execute from cli the next command:
+
+```sh
+  ./build/main.js [input-file] ...[options]
+```
+
+2. By running `npm run start`, you just need to pass the required argumenst after `--` chars:
+
+```sh
+  npm run start -- [input-file] ...[options]
+```
+
+3. By running `npm run start:dev`, you just need to pass the required argumenst after `--` chars,
+   the difference with the previous command is the hot-reload feature that provides `nodemon` module:
+
+```sh
+  npm run start:dev -- [input-file] ...[options]
 ```
 
 <!-- CONTRIBUTING -->
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to be learn, inspire,
+and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
