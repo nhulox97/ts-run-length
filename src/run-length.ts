@@ -56,6 +56,7 @@ export class RunLen extends FSRunLen {
         );
     });
     this.setData(joinDataByLineBreak(dataLines));
+    this.writeFileData(this.data);
     this.showData();
   }
 
@@ -80,6 +81,7 @@ export class RunLen extends FSRunLen {
       return encodedLine;
     });
     this.setData(joinDataByLineBreak(dataLines));
+    this.writeFileData(this.data);
     this.showData();
   }
 

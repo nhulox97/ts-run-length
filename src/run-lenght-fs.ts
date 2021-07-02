@@ -11,8 +11,8 @@ export class FSRunLen {
   }
 
   /**
-   * Provides the action to override the file whatever the result is, this method will be executed
-   * by user option.
+   * Provides the action to override the file whatever the result is,
+   * this method will be executed by user option.
    * @param data  To save into input file.
    */
   protected writeFileData(data: string): void {

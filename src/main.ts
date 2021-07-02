@@ -15,7 +15,6 @@ interface Arguments {
   [x: string]: unknown;
   d?: boolean;
   e?: boolean;
-  o?: boolean;
   h?: boolean;
   v?: boolean;
   _: (string | number)[];
@@ -33,11 +32,6 @@ const args: Arguments = yargs(process.argv.slice(2))
       alias: 'decode',
       desc: 'Decode the given file',
       conflicts: 'e',
-    },
-    o: {
-      type: 'boolean',
-      alias: 'override',
-      desc: 'Override the input file whatever be result would get',
     },
     h: { type: 'boolean', alias: 'help' },
     v: { type: 'boolean', alias: 'version' },
@@ -65,7 +59,6 @@ const inputFilePath = args._[0] as string;
 try {
   const encodeFlag = args.e;
   const decodeFlag = args.d;
-  const overrideFlag = args.o;
   // instantiate RunLen class and send inputFilePath which gonna read and set the current data from
   // input file
   const rl = new RunLen(inputFilePath);
@@ -74,9 +67,6 @@ try {
   }
   if (decodeFlag) {
     rl.decode();
-  }
-  if (overrideFlag) {
-    console.log('Override');
   }
 } catch (e) {
   console.error(e);
