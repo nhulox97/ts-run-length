@@ -28,3 +28,7 @@ export const hasCodableFormat = (data: string): boolean => !nonMatchEncExp.test(
  * @param data  Text result from read the input file.
  */
 export const hasDecodableFormat = (data: string): boolean => !nonMatchDecExp.test(data);
+
+export const splitDataByLineBreak = (data: string): string[] => data.split(/\r?\n/);
+
+export const joinDataByLineBreak = (data: string[]): string => data.join('\r\n');
