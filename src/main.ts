@@ -63,12 +63,21 @@ const args: Arguments = yargs(process.argv.slice(2))
 const inputFilePath = args._[0] as string;
 
 try {
+  const encodeFlag = args.e;
+  const decodeFlag = args.d;
+  const overrideFlag = args.o;
   // instantiate RunLen class and send inputFilePath which gonna read and set the current data from
   // input file
   const rl = new RunLen(inputFilePath);
-  // rl.encode();
-  // rl.showData();
-  // rl.decode();
+  if (encodeFlag) {
+    rl.encode();
+  }
+  if (decodeFlag) {
+    rl.decode();
+  }
+  if (overrideFlag) {
+    console.log('Override');
+  }
 } catch (e) {
-  throw new Error(e);
+  console.error(e);
 }
