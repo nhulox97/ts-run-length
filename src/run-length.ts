@@ -55,7 +55,7 @@ export class RunLen extends FSRunLen {
 
     const dataLines = this.dataArray.map((dataLine) => {
       return dataLine
-        .split('')
+        .split(/(?<=\d)(?=\D)|(?=\d)(?<=\D)/)
         .reduce(
           (acc, currChar, idxChar, chars) =>
             idxChar % 2 === 0 ? acc + chars[idxChar + 1].repeat(parseInt(currChar)) : acc,
